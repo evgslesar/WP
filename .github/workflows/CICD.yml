@@ -28,7 +28,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
-          source: "./wordpress.zip ./wpcontent.zip"
+          source: "wordpress.zip,wpcontent.zip"
           target: ${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}
 
       - name: Enable Maintenance Mode
@@ -38,7 +38,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
-          source: "./.maintenance"
+          source: ".maintenance"
           target: ${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}
 
       - name: Update Wordpress Core
