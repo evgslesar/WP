@@ -42,7 +42,7 @@ jobs:
           target: ${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}
 
       - name: Update Wordpress Core
-        uses: appleboy/ssh-action@1.0.3
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
@@ -57,7 +57,7 @@ jobs:
             rm -r "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/wordpress/"
 
       - name: Update plugins and theme
-        uses: appleboy/ssh-action@1.0.3
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
@@ -69,7 +69,7 @@ jobs:
             rm -r "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/wp-content/themes/*"
             unzip -o "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/wpcontent.zip" -d "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/wp-content/"
       - name: Disable Maintenance Mode
-        uses: appleboy/ssh-action@1.0.3
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
