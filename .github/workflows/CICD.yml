@@ -54,8 +54,8 @@ jobs:
             rm -r "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/wp-admin/"
             rm -r "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/wp-includes/"
             unzip -o "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/wordpress.zip" -d "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/"
-            mv "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/wordpress/*" "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/"
-            # rm -r "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/wordpress/"
+            mv "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/wordpress/" "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/"
+            rm -r "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/wordpress/"
 
       - name: Update plugins and theme
         uses: appleboy/ssh-action@v1.0.3
