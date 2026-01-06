@@ -50,12 +50,13 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            find "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}" -type f -name "*.php" ! -name "wp-config.php" -delete
-            rm -r "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/wp-admin/"
-            rm -r "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/wp-includes/"
-            unzip -o "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/wordpress.zip" -d "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/"
-            mv "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/wordpress/" "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/"
-            rm -r "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/wordpress/"
+            DEPLOY_PATH="${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}"
+            find "$DEPLOY_PATH" -type f -name "*.php" ! -name "wp-config.php" -delete
+            rm -rf "$DEPLOY_PATH/wp-admin/"
+            rm -rf "$DEPLOY_PATH/wp-includes/"
+            unzip -o "$DEPLOY_PATH/wordpress.zip" -d "$DEPLOY_PATH/"
+            cp -rf "$DEPLOY_PATH/wordpress/." "$DEPLOY_PATH/"
+            rm -rf "$DEPLOY_PATH/wordpress/"
 
       - name: Update plugins and theme
         uses: appleboy/ssh-action@v1.0.3
@@ -65,10 +66,11 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            rm -r "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/wp-content/plugins/"
-            rm -r "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/wp-content/mu-plugins/"
-            rm -r "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/wp-content/themes/"
-            unzip -o "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/wpcontent.zip" -d "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/wp-content/"
+            DEPLOY_PATH="${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}"
+            rm -rf "$DEPLOY_PATH/wp-content/plugins/"
+            rm -rf "$DEPLOY_PATH/wp-content/mu-plugins/"
+            rm -rf "$DEPLOY_PATH/wp-content/themes/"
+            unzip -o "$DEPLOY_PATH/wpcontent.zip" -d "$DEPLOY_PATH/wp-content/"
       - name: Disable Maintenance Mode
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -77,6 +79,7 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            rm -f "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/.maintenance"
-            rm -f "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/wpcontent.zip"
-            rm -f "${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}/wordpress.zip"
+            DEPLOY_PATH="${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}"
+            rm -f "$DEPLOY_PATH/.maintenance"
+            rm -f "$DEPLOY_PATH/wpcontent.zip"
+            rm -f "$DEPLOY_PATH/wordpress.zip"
