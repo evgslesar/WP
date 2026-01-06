@@ -50,8 +50,12 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           script: |
+            # Determine path: Pushing to 'dev' branch goes to DEV. Any other event (like manual dispatch) goes to LIVE.
             DEPLOY_PATH="${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}"
-            find "$DEPLOY_PATH" -type f -name "*.php" ! -name "wp-config.php" -delete
+
+            # Clean root PHP files only (preserve wp-config.php). Using maxdepth 1 to avoid nuking wp-content.
+            find "$DEPLOY_PATH" -maxdepth 1 -type f -name "*.php" ! -name "wp-config.php" -delete
+
             rm -rf "$DEPLOY_PATH/wp-admin/"
             rm -rf "$DEPLOY_PATH/wp-includes/"
             unzip -o "$DEPLOY_PATH/wordpress.zip" -d "$DEPLOY_PATH/"
