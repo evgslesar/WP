@@ -1,0 +1,45 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "blocks-gstore/block-header",
+  "version": "0.1.0",
+  "title": "Block Header",
+  "category": "widgets",
+  "icon": "smiley",
+  "description": "Site Header Block",
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "memberLink": {
+      "type": "string",
+      "default": ""
+    },
+    "cartLink": {
+      "type": "string",
+      "default": ""
+    },
+    "align": {
+      "type": "string",
+      "default": "full"
+    },
+    "geoLocation": {
+      "type": "string",
+      "default": "Galaxy Sector 1"
+    },
+    "ctaText": {
+      "type": "string",
+      "default": "Sell Starship"
+    },
+    "ctaUrl": {
+      "type": "string",
+      "default": "#"
+    }
+  },
+  "textdomain": "blocks-gstore",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js"
+}

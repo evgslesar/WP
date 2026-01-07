@@ -22,20 +22,46 @@ return array(
 		'style' => 'file:./style-index.css',
 		'viewScript' => 'file:./view.js'
 	),
-	'block-hero' => array(
+	'block-header' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'blocks-gstore/block-hero',
+		'name' => 'blocks-gstore/block-header',
 		'version' => '0.1.0',
-		'title' => 'Block Hero',
+		'title' => 'Block Header',
 		'category' => 'widgets',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Site Header Block',
 		'example' => array(
 			
 		),
 		'supports' => array(
 			'html' => false
+		),
+		'attributes' => array(
+			'memberLink' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'cartLink' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'align' => array(
+				'type' => 'string',
+				'default' => 'full'
+			),
+			'geoLocation' => array(
+				'type' => 'string',
+				'default' => 'Galaxy Sector 1'
+			),
+			'ctaText' => array(
+				'type' => 'string',
+				'default' => 'Sell Starship'
+			),
+			'ctaUrl' => array(
+				'type' => 'string',
+				'default' => '#'
+			)
 		),
 		'textdomain' => 'blocks-gstore',
 		'editorScript' => 'file:./index.js',
@@ -43,12 +69,12 @@ return array(
 		'style' => 'file:./style-index.css',
 		'viewScript' => 'file:./view.js'
 	),
-	'blocks-gstore' => array(
+	'block-hero' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'blocks-gstore/blocks-gstore',
+		'name' => 'blocks-gstore/block-hero',
 		'version' => '0.1.0',
-		'title' => 'Blocks Gstore',
+		'title' => 'Block Hero',
 		'category' => 'widgets',
 		'icon' => 'smiley',
 		'description' => 'Example block scaffolded with Create Block tool.',

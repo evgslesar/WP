@@ -27,3 +27,27 @@ function gstore_remove_dashboard_widgets()
   unset($wp_meta_boxes['dashboard']['normal']['high']['rank_math_dashboard_widget']);
 }
 add_action('wp_dashboard_setup', 'gstore_remove_dashboard_widgets');
+
+/**
+ * Allow SVG user uploads
+ */
+function gstore_mime_types($mimes)
+{
+  $mimes['svg'] = 'image/svg+xml';
+  return $mimes;
+}
+add_filter('upload_mimes', 'gstore_mime_types');
+
+/**
+ * Fix SVG display in media library
+ */
+function gstore_fix_svg_display()
+{
+  echo '<style>
+        .attachment-266x266, .thumbnail img {
+             width: 100% !important;
+             height: auto !important;
+        }
+    </style>';
+}
+add_action('admin_head', 'gstore_fix_svg_display');

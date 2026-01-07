@@ -1,0 +1,116 @@
+/*!****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/block-header/style.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************/
+.wp-block-blocks-gstore-block-header {
+  background-color: #000000;
+  color: #ffffff;
+  width: 100%;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+.wp-block-blocks-gstore-block-header .gstore-header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+@media (max-width: 768px) {
+  .wp-block-blocks-gstore-block-header .gstore-header__container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+.wp-block-blocks-gstore-block-header .gstore-header__left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.wp-block-blocks-gstore-block-header .gstore-header__logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.wp-block-blocks-gstore-block-header .gstore-header__geo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  color: #cccccc;
+}
+.wp-block-blocks-gstore-block-header .gstore-header__geo .dashicons {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+.wp-block-blocks-gstore-block-header .gstore-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.wp-block-blocks-gstore-block-header .gstore-header__nav a.gstore-nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+.wp-block-blocks-gstore-block-header .gstore-header__nav a.gstore-nav-link:hover {
+  color: #D0021B;
+  text-decoration: none;
+}
+.wp-block-blocks-gstore-block-header .gstore-header__nav .gstore-nav-more {
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+@media (max-width: 1024px) {
+  .wp-block-blocks-gstore-block-header .gstore-header__nav {
+    display: none;
+  }
+}
+.wp-block-blocks-gstore-block-header .gstore-header__right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.wp-block-blocks-gstore-block-header .gstore-btn-cta {
+  background-color: #D0021B;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+}
+.wp-block-blocks-gstore-block-header .gstore-btn-cta:hover {
+  background-color: #a00015;
+  color: #ffffff;
+}
+.wp-block-blocks-gstore-block-header .gstore-header__login {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+}
+.wp-block-blocks-gstore-block-header .gstore-header__login a {
+  color: #ffffff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.wp-block-blocks-gstore-block-header .gstore-header__login a:hover {
+  text-decoration: underline;
+}
+
+/*# sourceMappingURL=style-index.css.map*/

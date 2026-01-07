@@ -1,0 +1,124 @@
+.wp-block-blocks-gstore-block-header {
+	background-color: #000000;
+	color: #ffffff;
+	width: 100%;
+	font-family: system-ui, -apple-system, sans-serif;
+
+	.gstore-header__container {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 10px 20px;
+		width: 100%;
+		flex-wrap: wrap;
+		gap: 20px;
+
+		@media (max-width: 768px) {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
+
+	.gstore-header__left {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+	}
+
+	.gstore-header__logo {
+		font-size: 24px;
+		font-weight: bold;
+		color: #ffffff;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
+
+	.gstore-header__geo {
+		display: flex;
+		align-items: center;
+		gap: 5px;
+		font-size: 14px;
+		color: #cccccc;
+		
+		.dashicons {
+			font-size: 16px;
+			width: 16px; 
+			height: 16px;
+		}
+	}
+
+	.gstore-header__nav {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+		
+		a.gstore-nav-link {
+			color: #ffffff;
+			text-decoration: none;
+			font-size: 14px;
+			font-weight: 500;
+			
+			&:hover {
+				color: #D0021B; 
+				text-decoration: none;
+			}
+		}
+
+		.gstore-nav-more {
+			color: #ffffff;
+			font-size: 14px;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			gap: 3px;
+		}
+
+		@media (max-width: 1024px) {
+			display: none; // Hide on smaller screens or use hamburger
+		}
+	}
+
+	.gstore-header__right {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+	}
+
+	.gstore-btn-cta {
+		background-color: #D0021B;
+		color: #ffffff;
+		padding: 10px 20px;
+		border-radius: 4px;
+		text-decoration: none;
+		font-weight: bold;
+		font-size: 14px;
+		transition: background-color 0.2s;
+		white-space: nowrap;
+
+		&:hover {
+			background-color: #a00015;
+			color: #ffffff;
+		}
+	}
+
+	.gstore-header__login {
+		display: flex;
+		align-items: center;
+		gap: 5px; 
+		font-size: 14px;
+
+		a {
+			color: #ffffff;
+			text-decoration: none;
+			display: flex;
+			align-items: center;
+			gap: 5px;
+		
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+}
