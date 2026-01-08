@@ -61,6 +61,48 @@ return array(
 			'ctaUrl' => array(
 				'type' => 'string',
 				'default' => '#'
+			),
+			'menuItems' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'label' => 'Fighters',
+						'url' => '#'
+					),
+					array(
+						'label' => 'Frigates',
+						'url' => '#'
+					),
+					array(
+						'label' => 'Haulers',
+						'url' => '#'
+					),
+					array(
+						'label' => 'Destroyers',
+						'url' => '#'
+					),
+					array(
+						'label' => 'Shuttles',
+						'url' => '#'
+					)
+				)
+			),
+			'moreMenuItems' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'label' => 'About Us',
+						'url' => '#'
+					),
+					array(
+						'label' => 'Contact',
+						'url' => '#'
+					),
+					array(
+						'label' => 'Privacy Policy',
+						'url' => '#'
+					)
+				)
 			)
 		),
 		'textdomain' => 'blocks-gstore',

@@ -2,7 +2,10 @@
 	background-color: #000000;
 	color: #ffffff;
 	width: 100%;
-	font-family: system-ui, -apple-system, sans-serif;
+	font-family:
+		system-ui,
+		-apple-system,
+		sans-serif;
 
 	.gstore-header__container {
 		display: flex;
@@ -41,10 +44,10 @@
 		gap: 5px;
 		font-size: 14px;
 		color: #cccccc;
-		
+
 		.dashicons {
 			font-size: 16px;
-			width: 16px; 
+			width: 16px;
 			height: 16px;
 		}
 	}
@@ -53,15 +56,15 @@
 		display: flex;
 		align-items: center;
 		gap: 20px;
-		
+
 		a.gstore-nav-link {
 			color: #ffffff;
 			text-decoration: none;
 			font-size: 14px;
 			font-weight: 500;
-			
+
 			&:hover {
-				color: #D0021B; 
+				color: #d0021b;
 				text-decoration: none;
 			}
 		}
@@ -73,11 +76,76 @@
 			display: flex;
 			align-items: center;
 			gap: 3px;
+			position: relative; // Context for absolute positioning
+			transition: transform 0.2s;
+
+			&.is-open .gstore-nav-dropdown {
+				display: block; // Show on hover or when open class is added
+				transition: display 0.2s;
+			}
+			&.is-open svg {
+				transform: rotate(180deg);
+			}
+			.gstore-nav-dropdown {
+				display: none; // Hidden by default
+				position: absolute;
+				top: 100%;
+				left: 0;
+				background-color: #222;
+				min-width: 160px;
+				box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+				z-index: 1;
+				padding: 10px 0;
+				border-radius: 4px;
+				margin-top: 5px;
+
+				.gstore-dropdown-link {
+					color: #ffffff;
+					padding: 8px 16px;
+					text-decoration: none;
+					display: block;
+					font-size: 14px;
+					transition: background-color 0.2s;
+
+					&:hover {
+						background-color: #333;
+						color: #D0021B;
+					}
+				}
+			}
+
+			@media (max-width: 768px) {
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				svg {
+					position: absolute;
+					right: 5%;
+					top: 5px;
+				}
+				.gstore-nav-dropdown {
+					position: relative;
+					top: 0;
+					width: 100%;
+					min-width: unset;
+					box-shadow: none;
+					background-color: transparent;
+					padding: 0;
+					margin-top: 10px;
+					border-left: 1px solid #333;
+					
+					.gstore-dropdown-link {
+						padding-left: 20px;
+						text-align: center;
+					}
+				}
+			}
 		}
 
-		@media (max-width: 1024px) {
-			display: none; // Hide on smaller screens or use hamburger
-		}
+		// @media (max-width: 1024px) {
+		// 	display: none; // REMOVED: Managed by general.css for responsive behavior
+		// }
 	}
 
 	.gstore-header__right {
@@ -87,7 +155,7 @@
 	}
 
 	.gstore-btn-cta {
-		background-color: #D0021B;
+		background-color: #d0021b;
 		color: #ffffff;
 		padding: 10px 20px;
 		border-radius: 4px;
@@ -106,7 +174,7 @@
 	.gstore-header__login {
 		display: flex;
 		align-items: center;
-		gap: 5px; 
+		gap: 5px;
 		font-size: 14px;
 
 		a {
@@ -115,7 +183,7 @@
 			display: flex;
 			align-items: center;
 			gap: 5px;
-		
+
 			&:hover {
 				text-decoration: underline;
 			}

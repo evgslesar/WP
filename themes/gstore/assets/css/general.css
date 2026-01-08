@@ -15,6 +15,12 @@ html {
 	/* 2 */
 }
 
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
 /* Sections
    ========================================================================== */
 
@@ -393,3 +399,175 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 }
+
+/* Theme Variables
+   ========================================================================== */
+:root {
+	/* Light Mode (Default) */
+	--color-bg-page: #FFFFFF;
+	--color-text-main: #333333;
+	--color-text-secondary: #666666;
+	--color-header-bg: #1c1c1c; /* Keep dark header for contrast or adjust if needed */
+	--color-header-text: #ffffff;
+	--color-border: #e0e0e0;
+	--color-accent: #D0021B;
+    --color-card-bg: #FFFFFF;
+}
+
+[data-theme="dark"] {
+	/* Dark Mode */
+	--color-bg-page: #121212;
+	--color-text-main: #e0e0e0;
+	--color-text-secondary: #aaaaaa;
+	--color-header-bg: #000000;
+	--color-header-text: #dddddd;
+	--color-border: #333333;
+	--color-accent: #ff4d4d; /* Slightly lighter red for dark mode */
+    --color-card-bg: #1e1e1e;
+}
+
+body {
+	background-color: var(--color-bg-page);
+	color: var(--color-text-main);
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Theme Toggle Button
+   ========================================================================== */
+.theme-toggle {
+	background: none;
+	border: 1px solid var(--color-header-text);
+	border-radius: 50%;
+	color: var(--color-header-text);
+	cursor: pointer;
+	padding: 8px;
+	margin-left: 15px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.3s ease;
+	width: 36px;
+	height: 36px;
+}
+
+.theme-toggle:hover {
+	background-color: rgba(255, 255, 255, 0.1);
+	transform: scale(1.1);
+}
+
+.theme-toggle svg {
+	width: 20px;
+	height: 20px;
+    fill: currentColor;
+}
+
+/* Hide the icon that isn't active */
+[data-theme="dark"] .theme-toggle .icon-moon {
+	display: none;
+}
+[data-theme="dark"] .theme-toggle .icon-sun {
+	display: block;
+}
+
+:root:not([data-theme="dark"]) .theme-toggle .icon-sun {
+	display: none;
+}
+:root:not([data-theme="dark"]) .theme-toggle .icon-moon {
+	display: block;
+}
+
+/* Responsive Header
+   ========================================================================== */
+
+/* Burger Menu
+   ========================================================================== */
+.burger-menu {
+	display: none;
+	background: none;
+	border: 1px solid var(--color-header-text);
+	border-radius: 4px;
+	padding: 5px;
+	cursor: pointer;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	width: 36px;
+	height: 36px;
+	margin-left: 10px;
+}
+
+.burger-bar {
+	display: block;
+	width: 20px;
+	height: 2px;
+	background-color: var(--color-header-text);
+	margin: 2px 0;
+	transition: all 0.3s ease;
+}
+
+/* Responsive Header with Burger
+   ========================================================================== */
+@media screen and (max-width: 900px) {
+    .burger-menu {
+        display: flex;
+    }
+
+    .gstore-header .gstore-header__container {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .gstore-header .gstore-header__left {
+        width: 100%;
+        display: flex;
+        justify-content: space-between; 
+        order: 1;
+        margin-bottom: 0;
+    }
+    
+    /* Initially hide Nav */
+    .gstore-header .gstore-header__nav {
+        order: 3;
+        width: 100%;
+        display: none; /* Hidden by default */
+        flex-direction: column;
+        padding: 10px 0;
+        margin-bottom: 0;
+        gap: 0;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    /* Class to show nav */
+    .gstore-header .gstore-header__nav.is-open {
+        display: flex;
+    }
+    
+    .gstore-header .gstore-header__nav .gstore-nav-link {
+        flex: 1 0 auto;
+        margin-right: 0;
+        margin-bottom: 10px;
+        font-size: 16px;
+        padding: 10px;
+        display: block;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .gstore-header .gstore-header__right {
+        order: 2;
+        width: 100%;
+        display: flex;
+        justify-content: space-between; /* Space out Right items */
+        align-items: center;
+        margin-bottom: 5px;
+    }
+    
+    /* Make CTA smaller on mobile or move it */
+    .gstore-header .gstore-btn-cta {
+         flex-grow: 1;
+         margin-right: 15px;
+         text-align: center;
+    }
+}
+

@@ -35,6 +35,24 @@
 		"ctaUrl": {
 			"type": "string",
 			"default": "#"
+		},
+		"menuItems": {
+			"type": "array",
+			"default": [
+				{ "label": "Fighters", "url": "#" },
+				{ "label": "Frigates", "url": "#" },
+				{ "label": "Haulers", "url": "#" },
+				{ "label": "Destroyers", "url": "#" },
+				{ "label": "Shuttles", "url": "#" }
+			]
+		},
+		"moreMenuItems": {
+			"type": "array",
+			"default": [
+				{ "label": "About Us", "url": "#" },
+				{ "label": "Contact", "url": "#" },
+				{ "label": "Privacy Policy", "url": "#" }
+			]
 		}
 	},
 	"textdomain": "blocks-gstore",

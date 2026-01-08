@@ -7,14 +7,6 @@
  * @package gstore
  * @since 1.0.0
  */
-
-/**
- * Enqueue the CSS files.
- *
- * @since 1.0.0
- *
- * @return void
- */
 function gstore_enqueue_assets()
 {
 	wp_enqueue_style(

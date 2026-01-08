@@ -8,7 +8,7 @@
   \*************************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"blocks-gstore/block-header","version":"0.1.0","title":"Block Header","category":"widgets","icon":"smiley","description":"Site Header Block","example":{},"supports":{"html":false},"attributes":{"memberLink":{"type":"string","default":""},"cartLink":{"type":"string","default":""},"align":{"type":"string","default":"full"},"geoLocation":{"type":"string","default":"Galaxy Sector 1"},"ctaText":{"type":"string","default":"Sell Starship"},"ctaUrl":{"type":"string","default":"#"}},"textdomain":"blocks-gstore","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"blocks-gstore/block-header","version":"0.1.0","title":"Block Header","category":"widgets","icon":"smiley","description":"Site Header Block","example":{},"supports":{"html":false},"attributes":{"memberLink":{"type":"string","default":""},"cartLink":{"type":"string","default":""},"align":{"type":"string","default":"full"},"geoLocation":{"type":"string","default":"Galaxy Sector 1"},"ctaText":{"type":"string","default":"Sell Starship"},"ctaUrl":{"type":"string","default":"#"},"menuItems":{"type":"array","default":[{"label":"Fighters","url":"#"},{"label":"Frigates","url":"#"},{"label":"Haulers","url":"#"},{"label":"Destroyers","url":"#"},{"label":"Shuttles","url":"#"}]},"moreMenuItems":{"type":"array","default":[{"label":"About Us","url":"#"},{"label":"Contact","url":"#"},{"label":"Privacy Policy","url":"#"}]}},"textdomain":"blocks-gstore","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
 
 /***/ },
 
@@ -44,7 +44,9 @@ function Edit({
     memberLink,
     geoLocation,
     ctaText,
-    ctaUrl
+    ctaUrl,
+    menuItems,
+    moreMenuItems
   } = attributes;
   const onChangeGeo = val => setAttributes({
     geoLocation: val
@@ -58,9 +60,57 @@ function Edit({
   const onChangeMemberLink = val => setAttributes({
     memberLink: val
   });
+  const updateMenuItem = (index, key, value) => {
+    const newMenuItems = [...menuItems];
+    newMenuItems[index] = {
+      ...newMenuItems[index],
+      [key]: value
+    };
+    setAttributes({
+      menuItems: newMenuItems
+    });
+  };
+  const addMenuItem = () => {
+    setAttributes({
+      menuItems: [...menuItems, {
+        label: 'New Item',
+        url: '#'
+      }]
+    });
+  };
+  const removeMenuItem = index => {
+    const newMenuItems = menuItems.filter((_, i) => i !== index);
+    setAttributes({
+      menuItems: newMenuItems
+    });
+  };
+  const updateMoreMenuItem = (index, key, value) => {
+    const newMoreMenuItems = [...moreMenuItems];
+    newMoreMenuItems[index] = {
+      ...newMoreMenuItems[index],
+      [key]: value
+    };
+    setAttributes({
+      moreMenuItems: newMoreMenuItems
+    });
+  };
+  const addMoreMenuItem = () => {
+    setAttributes({
+      moreMenuItems: [...moreMenuItems, {
+        label: 'New Item',
+        url: '#'
+      }]
+    });
+  };
+  const removeMoreMenuItem = index => {
+    const newMoreMenuItems = moreMenuItems.filter((_, i) => i !== index);
+    setAttributes({
+      moreMenuItems: newMoreMenuItems
+    });
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Header Settings', 'blocks-gstore'),
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Geo Location', 'blocks-gstore'),
@@ -79,7 +129,62 @@ function Edit({
           value: memberLink,
           onChange: onChangeMemberLink
         })]
-      })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Menu Items', 'blocks-gstore'),
+        children: [menuItems.map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          style: {
+            marginBottom: '1rem',
+            borderBottom: '1px solid #eee',
+            paddingBottom: '1rem'
+          },
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Label', 'blocks-gstore'),
+            value: item.label,
+            onChange: val => updateMenuItem(index, 'label', val)
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('URL', 'blocks-gstore'),
+            value: item.url,
+            onChange: val => updateMenuItem(index, 'url', val)
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+            isDestructive: true,
+            variant: "link",
+            onClick: () => removeMenuItem(index),
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Remove Item', 'blocks-gstore')
+          })]
+        }, index)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+          variant: "secondary",
+          onClick: addMenuItem,
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Add Menu Item', 'blocks-gstore')
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('More Menu Items', 'blocks-gstore'),
+        initialOpen: false,
+        children: [moreMenuItems && moreMenuItems.map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          style: {
+            marginBottom: '1rem',
+            borderBottom: '1px solid #eee',
+            paddingBottom: '1rem'
+          },
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Label', 'blocks-gstore'),
+            value: item.label,
+            onChange: val => updateMoreMenuItem(index, 'label', val)
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('URL', 'blocks-gstore'),
+            value: item.url,
+            onChange: val => updateMoreMenuItem(index, 'url', val)
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+            isDestructive: true,
+            variant: "link",
+            onClick: () => removeMoreMenuItem(index),
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Remove Item', 'blocks-gstore')
+          })]
+        }, index)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+          variant: "secondary",
+          onClick: addMoreMenuItem,
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Add Menu Item', 'blocks-gstore')
+        })]
+      })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
         className: 'gstore-header'
@@ -106,29 +211,16 @@ function Edit({
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("nav", {
           className: "gstore-header__nav",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
-            href: "#",
+          children: [menuItems && menuItems.map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
+            href: item.url,
             className: "gstore-nav-link",
-            children: "Fighters"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
-            href: "#",
-            className: "gstore-nav-link",
-            children: "Frigates"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
-            href: "#",
-            className: "gstore-nav-link",
-            children: "Haulers"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
-            href: "#",
-            className: "gstore-nav-link",
-            children: "Destroyers"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
-            href: "#",
-            className: "gstore-nav-link",
-            children: "Shuttles"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+            onClick: e => e.preventDefault(),
+            children: item.label
+          }, index)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "gstore-nav-more",
-            children: ["More ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("svg", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+              children: "More"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("svg", {
               width: "16",
               height: "16",
               viewBox: "0 0 24 24",
@@ -137,6 +229,14 @@ function Edit({
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
                 d: "M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
               })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "gstore-nav-dropdown",
+              children: moreMenuItems && moreMenuItems.map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
+                href: item.url,
+                className: "gstore-dropdown-link",
+                onClick: e => e.preventDefault(),
+                children: item.label
+              }, index))
             })]
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
@@ -157,6 +257,92 @@ function Edit({
                 d: "M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
               })
             }), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Login', 'blocks-gstore')]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("button", {
+            className: "theme-toggle",
+            "aria-label": "Toggle Dark/Light Mode",
+            disabled: true,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("svg", {
+              className: "icon-moon",
+              xmlns: "http://www.w3.org/2000/svg",
+              width: "24",
+              height: "24",
+              viewBox: "0 0 24 24",
+              fill: "none",
+              stroke: "currentColor",
+              strokeWidth: "2",
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
+                d: "M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("svg", {
+              className: "icon-sun",
+              xmlns: "http://www.w3.org/2000/svg",
+              width: "24",
+              height: "24",
+              viewBox: "0 0 24 24",
+              fill: "none",
+              stroke: "currentColor",
+              strokeWidth: "2",
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("circle", {
+                cx: "12",
+                cy: "12",
+                r: "5"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("line", {
+                x1: "12",
+                y1: "1",
+                x2: "12",
+                y2: "3"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("line", {
+                x1: "12",
+                y1: "21",
+                x2: "12",
+                y2: "23"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("line", {
+                x1: "4.22",
+                y1: "4.22",
+                x2: "5.64",
+                y2: "5.64"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("line", {
+                x1: "18.36",
+                y1: "18.36",
+                x2: "19.78",
+                y2: "19.78"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("line", {
+                x1: "1",
+                y1: "12",
+                x2: "3",
+                y2: "12"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("line", {
+                x1: "21",
+                y1: "12",
+                x2: "23",
+                y2: "12"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("line", {
+                x1: "4.22",
+                y1: "19.78",
+                x2: "5.64",
+                y2: "18.36"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("line", {
+                x1: "18.36",
+                y1: "5.64",
+                x2: "19.78",
+                y2: "4.22"
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("button", {
+            className: "burger-menu",
+            "aria-label": "Toggle Navigation",
+            disabled: true,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+              className: "burger-bar"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+              className: "burger-bar"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+              className: "burger-bar"
+            })]
           })]
         })]
       })
@@ -258,7 +444,9 @@ function save({
     memberLink,
     geoLocation,
     ctaText,
-    ctaUrl
+    ctaUrl,
+    menuItems,
+    moreMenuItems
   } = attributes;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
@@ -286,29 +474,15 @@ function save({
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("nav", {
         className: "gstore-header__nav",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-          href: "#",
+        children: [menuItems && menuItems.map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+          href: item.url,
           className: "gstore-nav-link",
-          children: "Fighters"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-          href: "#",
-          className: "gstore-nav-link",
-          children: "Frigates"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-          href: "#",
-          className: "gstore-nav-link",
-          children: "Haulers"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-          href: "#",
-          className: "gstore-nav-link",
-          children: "Destroyers"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-          href: "#",
-          className: "gstore-nav-link",
-          children: "Shuttles"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
+          children: item.label
+        }, index)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
           className: "gstore-nav-more",
-          children: ["More ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+            children: "More"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
             width: "16",
             height: "16",
             viewBox: "0 0 24 24",
@@ -317,6 +491,13 @@ function save({
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
               d: "M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
             })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "gstore-nav-dropdown",
+            children: moreMenuItems && moreMenuItems.map((item, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+              href: item.url,
+              className: "gstore-dropdown-link",
+              children: item.label
+            }, index))
           })]
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
@@ -340,6 +521,90 @@ function save({
               })
             }), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Login', 'blocks-gstore')]
           })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("button", {
+          className: "theme-toggle js-theme-toggle",
+          "aria-label": "Toggle Dark/Light Mode",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
+            className: "icon-moon",
+            xmlns: "http://www.w3.org/2000/svg",
+            width: "24",
+            height: "24",
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "2",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
+              d: "M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("svg", {
+            className: "icon-sun",
+            xmlns: "http://www.w3.org/2000/svg",
+            width: "24",
+            height: "24",
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "2",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("circle", {
+              cx: "12",
+              cy: "12",
+              r: "5"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("line", {
+              x1: "12",
+              y1: "1",
+              x2: "12",
+              y2: "3"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("line", {
+              x1: "12",
+              y1: "21",
+              x2: "12",
+              y2: "23"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("line", {
+              x1: "4.22",
+              y1: "4.22",
+              x2: "5.64",
+              y2: "5.64"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("line", {
+              x1: "18.36",
+              y1: "18.36",
+              x2: "19.78",
+              y2: "19.78"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("line", {
+              x1: "1",
+              y1: "12",
+              x2: "3",
+              y2: "12"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("line", {
+              x1: "21",
+              y1: "12",
+              x2: "23",
+              y2: "12"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("line", {
+              x1: "4.22",
+              y1: "19.78",
+              x2: "5.64",
+              y2: "18.36"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("line", {
+              x1: "18.36",
+              y1: "5.64",
+              x2: "19.78",
+              y2: "4.22"
+            })]
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("button", {
+          className: "burger-menu js-burger-menu",
+          "aria-label": "Toggle Navigation",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+            className: "burger-bar"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+            className: "burger-bar"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+            className: "burger-bar"
+          })]
         })]
       })]
     })

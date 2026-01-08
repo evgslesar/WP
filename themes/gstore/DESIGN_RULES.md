@@ -40,7 +40,13 @@ This document serves as the ground truth for generating styles and layouts for t
     - Elements: Logo (Left) -> Geo Location (Sector/Planet) -> Nav Links (Civilian, Military, Empire, etc.) -> "More" Dropdown -> **Red CTA Button ("Sell Starship")** -> Login/Register (Right).
     - _Note:_ The Red Button is a prominent solid block.
 
-2.  **Breadcrumbs / Sub-navigation:**
+2.  **Responsive / Mobile:**
+    - On screens narrower than `768px`, elements should stack or simplify.
+    - **Logo & Theme Toggle** should remain visible.
+    - **Navigation** should become a horizontally a hamburger menu.
+    - **Search/CTA** might move below the main bar or stack.
+
+3.  **Breadcrumbs / Sub-navigation:**
     - Simple text links, small size, located below the main header. Example: _Galaxy > Outer Rim > Tatooine > T-65 X-Wing_
 
 ### Listings Layout (Archive/Search)
@@ -84,11 +90,45 @@ This document serves as the ground truth for generating styles and layouts for t
 - **Cards:** Use `wp:group` with a border or shadow utility class.
 - **Tables:** Use `wp:table` or customized `wp:group` rows for Specs to ensure responsive behavior.
 - **Navigation:** `wp:navigation` with custom CSS for the dark background and white text.
+- **Global CSS:** All general/global site styles MUST be written in `themes/gstore/assets/css/general.css`.
 
 ## 4. Specific UI Details to Mimic
 
 - **Horizontal Scrolling:** "Similar Items" or "Hottest Deals" often appear as a horizontal row of cards (Image Top, Price Red label, Title).
 - **Tags:** Rounded pill tags for "Exchange", "Trade-in", etc.
+
+---
+
+## 5. Responsive Design Rules (Site-wide)
+
+### Breakpoints
+
+- **Mobile:** `< 768px` (Stack elements, 100% width, simplified layouts).
+- **Tablet:** `768px - 1024px` (Adaptive grids, standard padding).
+- **Desktop:** `> 1024px` (Centered containers, max-widths applied).
+
+### Global Layout Behavior
+
+1.  **Containers:**
+    - Mobile: 100% width with `15px` horizontal padding.
+    - Desktop: Max-width `1200px`, centered.
+2.  **Typography Scale:**
+    - Reduce Heading sizes by ~20% on mobile.
+3.  **Images:**
+    - Always `max-width: 100%`, `height: auto` to prevent overflow.
+
+### Component Specifics
+
+1.  **Header:**
+    - **Header Block:** Must remain visible.
+    - **Navigation:** Transform to horizontal scroll (overflow-x) or Hamburger menu. DO NOT hide essential links.
+    - **Search/Actions:** Stack vertically if space is tight.
+2.  **Listings/Grid:**
+    - Desktop: 4 columns.
+    - Tablet: 2 or 3 columns.
+    - Mobile: 1 column (Card view) or List view (1 item per row).
+3.  **Tables:**
+    - Must have standard horizontal scrolling wrapper on mobile.
 
 ---
 

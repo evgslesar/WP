@@ -60,7 +60,7 @@
   font-weight: 500;
 }
 .wp-block-blocks-gstore-block-header .gstore-header__nav a.gstore-nav-link:hover {
-  color: #D0021B;
+  color: #d0021b;
   text-decoration: none;
 }
 .wp-block-blocks-gstore-block-header .gstore-header__nav .gstore-nav-more {
@@ -70,10 +70,67 @@
   display: flex;
   align-items: center;
   gap: 3px;
+  position: relative;
+  transition: transform 0.2s;
 }
-@media (max-width: 1024px) {
-  .wp-block-blocks-gstore-block-header .gstore-header__nav {
-    display: none;
+.wp-block-blocks-gstore-block-header .gstore-header__nav .gstore-nav-more.is-open .gstore-nav-dropdown {
+  display: block;
+  transition: display 0.2s;
+}
+.wp-block-blocks-gstore-block-header .gstore-header__nav .gstore-nav-more.is-open svg {
+  transform: rotate(180deg);
+}
+.wp-block-blocks-gstore-block-header .gstore-header__nav .gstore-nav-more .gstore-nav-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #222;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  padding: 10px 0;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+.wp-block-blocks-gstore-block-header .gstore-header__nav .gstore-nav-more .gstore-nav-dropdown .gstore-dropdown-link {
+  color: #ffffff;
+  padding: 8px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+.wp-block-blocks-gstore-block-header .gstore-header__nav .gstore-nav-more .gstore-nav-dropdown .gstore-dropdown-link:hover {
+  background-color: #333;
+  color: #D0021B;
+}
+@media (max-width: 768px) {
+  .wp-block-blocks-gstore-block-header .gstore-header__nav .gstore-nav-more {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .wp-block-blocks-gstore-block-header .gstore-header__nav .gstore-nav-more svg {
+    position: absolute;
+    right: 5%;
+    top: 5px;
+  }
+  .wp-block-blocks-gstore-block-header .gstore-header__nav .gstore-nav-more .gstore-nav-dropdown {
+    position: relative;
+    top: 0;
+    width: 100%;
+    min-width: unset;
+    box-shadow: none;
+    background-color: transparent;
+    padding: 0;
+    margin-top: 10px;
+    border-left: 1px solid #333;
+  }
+  .wp-block-blocks-gstore-block-header .gstore-header__nav .gstore-nav-more .gstore-nav-dropdown .gstore-dropdown-link {
+    padding-left: 20px;
+    text-align: center;
   }
 }
 .wp-block-blocks-gstore-block-header .gstore-header__right {
@@ -82,7 +139,7 @@
   gap: 20px;
 }
 .wp-block-blocks-gstore-block-header .gstore-btn-cta {
-  background-color: #D0021B;
+  background-color: #d0021b;
   color: #ffffff;
   padding: 10px 20px;
   border-radius: 4px;

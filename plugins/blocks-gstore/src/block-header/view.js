@@ -20,6 +20,34 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/#view-script
  */
 
-/* eslint-disable no-console */
-console.log( 'Hello World! (from create-block-blocks-gstore block)' );
-/* eslint-enable no-console */
+document.addEventListener("DOMContentLoaded", () => {
+	const moreToggles = document.querySelectorAll(".gstore-nav-more");
+
+	moreToggles.forEach((toggle) => {
+		toggle.addEventListener("click", (e) => {
+			e.stopPropagation();
+			toggle.classList.toggle("is-open");
+		});
+	});
+
+	document.addEventListener("click", (e) => {
+		moreToggles.forEach((toggle) => {
+			if (!toggle.contains(e.target)) {
+				toggle.classList.remove("is-open");
+			}
+		});
+	});
+
+	// Burger Menu Toggle
+	const burgerBtn = document.querySelector(".js-burger-menu");
+	const navMenu = document.querySelector(".gstore-header__nav");
+
+	if (burgerBtn && navMenu) {
+		burgerBtn.addEventListener("click", function (e) {
+			e.preventDefault();
+			navMenu.classList.toggle("is-open");
+			// Optional: Animate burger bars
+			burgerBtn.classList.toggle("is-active");
+		});
+	}
+});
