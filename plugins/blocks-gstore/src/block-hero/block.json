@@ -6,10 +6,49 @@
 	"title": "Block Hero",
 	"category": "widgets",
 	"icon": "smiley",
-	"description": "Example block scaffolded with Create Block tool.",
+	"description": "The Site Hero Block",
 	"example": {},
 	"supports": {
 		"html": false
+	},
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": "Hero Title"
+		},
+		"description": {
+			"type": "string",
+			"default": "Hero Description"
+		},
+		"link": {
+			"type": "string",
+			"default": "#"
+		},
+		"linkAnchor": {
+			"type": "string",
+			"default": "Learn More"
+		},
+		"video": {
+			"type": "string"
+		},
+		"mediaType": {
+			"type": "string",
+			"default": "video"
+		},
+		"backgroundImage": {
+			"type": "string"
+		},
+		"backgroundImageId": {
+			"type": "number"
+		},
+		"logos": {
+			"type": "array",
+			"default": []
+		},
+		"logosTitle": {
+			"type": "string",
+			"default": "Trusted by"
+		}
 	},
 	"textdomain": "blocks-gstore",
 	"editorScript": "file:./index.js",

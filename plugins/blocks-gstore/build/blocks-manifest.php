@@ -119,12 +119,53 @@ return array(
 		'title' => 'Block Hero',
 		'category' => 'widgets',
 		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'The Site Hero Block',
 		'example' => array(
 			
 		),
 		'supports' => array(
 			'html' => false
+		),
+		'attributes' => array(
+			'title' => array(
+				'type' => 'string',
+				'default' => 'Hero Title'
+			),
+			'description' => array(
+				'type' => 'string',
+				'default' => 'Hero Description'
+			),
+			'link' => array(
+				'type' => 'string',
+				'default' => '#'
+			),
+			'linkAnchor' => array(
+				'type' => 'string',
+				'default' => 'Learn More'
+			),
+			'video' => array(
+				'type' => 'string'
+			),
+			'mediaType' => array(
+				'type' => 'string',
+				'default' => 'video'
+			),
+			'backgroundImage' => array(
+				'type' => 'string'
+			),
+			'backgroundImageId' => array(
+				'type' => 'number'
+			),
+			'logos' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			),
+			'logosTitle' => array(
+				'type' => 'string',
+				'default' => 'Trusted by'
+			)
 		),
 		'textdomain' => 'blocks-gstore',
 		'editorScript' => 'file:./index.js',

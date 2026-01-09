@@ -1,24 +1,72 @@
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
- */
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, RichText } from "@wordpress/block-editor";
 
-/**
- * The save function defines the way in which the different attributes should
- * be combined into the final markup, which is then serialized by the block
- * editor into `post_content`.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#save
- *
- * @return {Element} Element to render.
- */
-export default function save() {
+export default function save({ attributes }) {
+	const {
+		title,
+		description,
+		link,
+		linkAnchor,
+		video,
+		mediaType,
+		backgroundImage,
+		logos,
+		logosTitle,
+	} = attributes;
 	return (
-		<p { ...useBlockProps.save() }>
-			{ 'Blocks Gstore – hello from the saved content!' }
-		</p>
+		<div {...useBlockProps.save()}>
+			<div className="hero-video-container">
+				{mediaType === "video" && video && (
+					<video muted loop autoPlay>
+						<source src={video} type="video/mp4" />
+					</video>
+				)}
+				{mediaType === "image" && backgroundImage && (
+					<img
+						src={backgroundImage}
+						alt="Hero Background"
+						style={{ width: "100%", height: "100%", objectFit: "cover" }}
+					/>
+				)}
+			</div>
+			<div className="hero-content">
+				<RichText.Content tagName="h2" className="hero-title" value={title} />
+				<RichText.Content
+					tagName="p"
+					className="hero-description"
+					value={description}
+				/>
+				<a
+					href={link}
+					className="hero-link"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					{linkAnchor}
+				</a>
+			</div>
+			{logos && logos.length > 0 && (
+				<div className="hero-logos-container">
+					<RichText.Content
+						tagName="p"
+						className="hero-logos-title"
+						value={logosTitle}
+					/>
+					<div className="hero-logos-wrapper">
+						<div className="hero-logos-track">
+							{logos.map((logo, index) => (
+								<div key={index} className="hero-logo-item">
+									<img src={logo.url} alt={logo.alt} />
+								</div>
+							))}
+							{logos.map((logo, index) => (
+								<div key={`dup-${index}`} className="hero-logo-item">
+									<img src={logo.url} alt={logo.alt} />
+								</div>
+							))}
+						</div>
+					</div>
+				</div>
+			)}
+		</div>
 	);
 }
