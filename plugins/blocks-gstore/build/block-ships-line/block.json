@@ -1,0 +1,29 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "blocks-gstore/block-ships-line",
+  "version": "0.1.0",
+  "title": "Block Ships Line",
+  "category": "widgets",
+  "icon": "smiley",
+  "description": "Slider Block with ships images.",
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "textdomain": "blocks-gstore",
+  "attributes": {
+    "maxSlides": {
+      "type": "number",
+      "default": 8
+    },
+    "imageHeight": {
+      "type": "number",
+      "default": 400
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js"
+}

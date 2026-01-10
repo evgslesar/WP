@@ -172,5 +172,36 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
 		'viewScript' => 'file:./view.js'
+	),
+	'block-ships-line' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'blocks-gstore/block-ships-line',
+		'version' => '0.1.0',
+		'title' => 'Block Ships Line',
+		'category' => 'widgets',
+		'icon' => 'smiley',
+		'description' => 'Slider Block with ships images.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false
+		),
+		'textdomain' => 'blocks-gstore',
+		'attributes' => array(
+			'maxSlides' => array(
+				'type' => 'number',
+				'default' => 8
+			),
+			'imageHeight' => array(
+				'type' => 'number',
+				'default' => 400
+			)
+		),
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'viewScript' => 'file:./view.js'
 	)
 );

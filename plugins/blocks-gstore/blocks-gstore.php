@@ -26,8 +26,17 @@ add_filter('block_categories_all', function ($categories) {
 	]);
 });
 
+require_once __DIR__ . '/blocks.php';
+
 function create_block_blocks_gstore_block_init()
 {
+	add_filter('register_block_type_args', function ($args, $name) {
+		if ('blocks-gstore/block-ships-line' === $name) {
+			$args['render_callback'] = 'view_block_ships_line';
+		}
+		return $args;
+	}, 10, 2);
+
 	if (function_exists('wp_register_block_types_from_metadata_collection')) {
 		wp_register_block_types_from_metadata_collection(__DIR__ . '/build', __DIR__ . '/build/blocks-manifest.php');
 		return;
