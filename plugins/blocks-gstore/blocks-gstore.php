@@ -33,6 +33,8 @@ function create_block_blocks_gstore_block_init()
 	add_filter('register_block_type_args', function ($args, $name) {
 		if ('blocks-gstore/block-ships-line' === $name) {
 			$args['render_callback'] = 'view_block_ships_line';
+		} elseif ('blocks-gstore/block-recent-news' === $name) {
+			$args['render_callback'] = 'view_block_recent_news';
 		}
 		return $args;
 	}, 10, 2);

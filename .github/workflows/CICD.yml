@@ -46,7 +46,8 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             DEPLOY_PATH="${{ github.event_name == 'push' && '/var/www/evgslesar/data/www/dev.24esl.ru' || '/var/www/evgslesar/data/www/live.24esl.ru' }}"
-            rm -rf "$DEPLOY_PATH/wp-content/plugins/"
+            rm -rf "$DEPLOY_PATH/wp-content/plugins/core-gstore/"
+            rm -rf "$DEPLOY_PATH/wp-content/plugins/blocks-gstore/"
             rm -rf "$DEPLOY_PATH/wp-content/mu-plugins/"
             rm -rf "$DEPLOY_PATH/wp-content/themes/"
             unzip -o "$DEPLOY_PATH/wpcontent.zip" -d "$DEPLOY_PATH/wp-content/"

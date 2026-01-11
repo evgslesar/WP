@@ -170,8 +170,33 @@ return array(
 		'textdomain' => 'blocks-gstore',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
-		'viewScript' => 'file:./view.js'
+		'style' => 'file:./style-index.css'
+	),
+	'block-recent-news' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'blocks-gstore/block-recent-news',
+		'version' => '0.1.0',
+		'title' => 'Block Recent News',
+		'category' => 'widgets',
+		'icon' => 'smiley',
+		'description' => 'Block Recent News for the main page',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false
+		),
+		'textdomain' => 'blocks-gstore',
+		'attributes' => array(
+			'postsToShow' => array(
+				'type' => 'number',
+				'default' => 4
+			)
+		),
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css'
 	),
 	'block-ships-line' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
