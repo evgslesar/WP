@@ -46,7 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		burgerBtn.addEventListener("click", function (e) {
 			e.preventDefault();
 			navMenu.classList.toggle("is-open");
-			// Optional: Animate burger bars
 			burgerBtn.classList.toggle("is-active");
 		});
 	}

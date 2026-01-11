@@ -1,0 +1,101 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "blocks-gstore/block-footer",
+  "version": "0.1.0",
+  "title": "Block Footer",
+  "category": "widgets",
+  "icon": "smiley",
+  "description": "Block Footer for the site",
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "logoText": {
+      "type": "string",
+      "default": "GStore"
+    },
+    "copyrightText": {
+      "type": "string",
+      "default": "© 2026 GStore. All rights reserved."
+    },
+    "footerMenu": {
+      "type": "array",
+      "default": [
+        {
+          "title": "Categories",
+          "links": [
+            {
+              "label": "Fighters",
+              "url": "#"
+            },
+            {
+              "label": "Frigates",
+              "url": "#"
+            },
+            {
+              "label": "Haulers",
+              "url": "#"
+            }
+          ]
+        },
+        {
+          "title": "Company",
+          "links": [
+            {
+              "label": "About Us",
+              "url": "#"
+            },
+            {
+              "label": "Careers",
+              "url": "#"
+            },
+            {
+              "label": "Blog",
+              "url": "#"
+            }
+          ]
+        },
+        {
+          "title": "Support",
+          "links": [
+            {
+              "label": "Help Center",
+              "url": "#"
+            },
+            {
+              "label": "Terms of Service",
+              "url": "#"
+            },
+            {
+              "label": "Privacy Policy",
+              "url": "#"
+            }
+          ]
+        }
+      ]
+    },
+    "socialLinks": {
+      "type": "array",
+      "default": [
+        {
+          "platform": "twitter",
+          "url": "#"
+        },
+        {
+          "platform": "facebook",
+          "url": "#"
+        },
+        {
+          "platform": "instagram",
+          "url": "#"
+        }
+      ]
+    }
+  },
+  "textdomain": "blocks-gstore",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

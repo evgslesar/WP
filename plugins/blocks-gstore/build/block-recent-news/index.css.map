@@ -1,1 +1,0 @@
-{"version":3,"file":"block-recent-news/index.css","mappings":";;;AACA;EACC;AAAD,C","sources":["webpack://blocks-gstore/./src/block-recent-news/editor.scss"],"sourcesContent":["\r\n.wp-block-create-block-blocks-gstore {\r\n\tborder: 1px dotted #f00;\r\n}\r\n"],"names":[],"ignoreList":[],"sourceRoot":""}

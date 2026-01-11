@@ -22,6 +22,109 @@ return array(
 		'style' => 'file:./style-index.css',
 		'viewScript' => 'file:./view.js'
 	),
+	'block-footer' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'blocks-gstore/block-footer',
+		'version' => '0.1.0',
+		'title' => 'Block Footer',
+		'category' => 'widgets',
+		'icon' => 'smiley',
+		'description' => 'Block Footer for the site',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false
+		),
+		'attributes' => array(
+			'logoText' => array(
+				'type' => 'string',
+				'default' => 'GStore'
+			),
+			'copyrightText' => array(
+				'type' => 'string',
+				'default' => '© 2026 GStore. All rights reserved.'
+			),
+			'footerMenu' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'title' => 'Categories',
+						'links' => array(
+							array(
+								'label' => 'Fighters',
+								'url' => '#'
+							),
+							array(
+								'label' => 'Frigates',
+								'url' => '#'
+							),
+							array(
+								'label' => 'Haulers',
+								'url' => '#'
+							)
+						)
+					),
+					array(
+						'title' => 'Company',
+						'links' => array(
+							array(
+								'label' => 'About Us',
+								'url' => '#'
+							),
+							array(
+								'label' => 'Careers',
+								'url' => '#'
+							),
+							array(
+								'label' => 'Blog',
+								'url' => '#'
+							)
+						)
+					),
+					array(
+						'title' => 'Support',
+						'links' => array(
+							array(
+								'label' => 'Help Center',
+								'url' => '#'
+							),
+							array(
+								'label' => 'Terms of Service',
+								'url' => '#'
+							),
+							array(
+								'label' => 'Privacy Policy',
+								'url' => '#'
+							)
+						)
+					)
+				)
+			),
+			'socialLinks' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'platform' => 'twitter',
+						'url' => '#'
+					),
+					array(
+						'platform' => 'facebook',
+						'url' => '#'
+					),
+					array(
+						'platform' => 'instagram',
+						'url' => '#'
+					)
+				)
+			)
+		),
+		'textdomain' => 'blocks-gstore',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css'
+	),
 	'block-header' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
